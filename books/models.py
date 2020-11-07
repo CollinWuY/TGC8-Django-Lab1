@@ -11,10 +11,12 @@ class Book(models.Model):
     def __str__(self):
         return self.title
 
+
 class Author(models.Model):
     first_name = models.CharField(blank=False, max_length=255)
     last_name = models.CharField(blank=False, max_length=255)
-    date_of_birth = models.DateField(blank=False, auto_now=False, auto_now_add=False)
+    date_of_birth = models.DateField(
+        blank=False, auto_now=False, auto_now_add=False)
 
     def __str__(self):
-        return self.title
+        return self.first_name + " " + self.last_name
