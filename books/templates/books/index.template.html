@@ -18,6 +18,8 @@
         <p>Here you can see all the books that we have</p>
     </div>
     <div class="container">
+        <a href="{%url 'create_book_route'%}" class="btn btn-success">CREATE</a>
+        <a href="{%url 'show_author_route'%}" class="btn btn-info">Authors</a>
         <table class="table">
             <thead>
                 <tr>
@@ -32,7 +34,10 @@
                     <td>{{book.title}}</td>
                     <td>{{book.ISBN}}</td>
                     <td>{{book.desc}}</td>
-                    <td><a href="{%url 'update_book_route' book_id=book.id%}" class="btn btn-secondary">EDIT</a></td>
+                    <td>
+                        <a href="{%url 'update_book_route' book_id=book.id%}" class="btn btn-warning">EDIT</a>
+                        <a href="{%url 'delete_book_route' book_id=book.id%}" class="btn btn-danger">DELETE</a>
+                    </td>
                 </tr>
                 {%endfor%}
             </tbody>

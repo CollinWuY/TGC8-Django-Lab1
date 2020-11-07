@@ -58,12 +58,14 @@ def update_book(request, book_id):
             return redirect(reverse(index))
         else:
             return render(request, 'books/update.tempalte.html', {
-                'form': book_form
+                'form': book_form,
+                'book': book_being_updated
             })
     else:
         book_form = BookForm(instance=book_being_updated)
         return render(request, 'books/update.template.html', {
-            "form": book_form
+            "form": book_form,
+            'book': book_being_updated
         })
 
 
@@ -76,10 +78,34 @@ def update_author(request, author_id):
             return redirect(reverse(authors))
         else:
             return render(request, 'books/update_author.template.html', {
-                'form': author_form
+                'form': author_form,
+                'author': author_being_updated
             })
     else:
         author_form = AuthorForm(instance=author_being_updated)
         return render(request, 'books/update_author.template.html', {
-            'form': author_form
+            'form': author_form,
+            'author': author_being_updated
+        })
+
+
+def delete_book(request, book_id):
+    book_to_delete = get_object_or_404(Book, pk=book_id)
+    if request.method == 'POST':
+        book_to_delete.delete()
+        return redirect(reverse(index))
+    else:
+        return render(request, 'books/delete_book.template.html', {
+            "book": book_to_delete
+        })
+
+
+def delete_author(request, author_id):
+    author_to_delete = get_object_or_404(Author, pk=author_id)
+    if request.method == 'POST':
+        author_to_delete.delete()
+        return redirect(reverse(authors))
+    else:
+        return render(request, 'books/delete_author.template.html', {
+            "author": author_to_delete
         })

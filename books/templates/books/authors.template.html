@@ -18,6 +18,8 @@
         <p>Here you can see all the Authors Catalogued</p>
     </div>
     <div class="container">
+        <a href="{%url 'create_author_route'%}" class="btn btn-success">CREATE</a>
+        <a href="{%url 'show_book_route'%}" class="btn btn-info">Books</a>
         <table class="table">
             <thead>
                 <tr>
@@ -30,7 +32,10 @@
                 <tr>
                     <td>{{author.first_name}}   {{author.last_name}}</td>
                     <td>{{author.date_of_birth}}</td>
-                    <td><a href="{%url 'update_author_route' author_id=author.id%}" class="btn btn-secondary">EDIT</a></td>
+                    <td>
+                        <a href="{%url 'update_author_route' author_id=author.id%}" class="btn btn-warning">EDIT</a>
+                        <a href="{%url 'delete_author_route' author_id=author.id%}" class="btn btn-danger">DELETE</a>
+                    </td>
                 </tr>
                 {%endfor%}
             </tbody>
