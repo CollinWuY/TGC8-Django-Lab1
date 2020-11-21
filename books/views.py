@@ -1,4 +1,5 @@
 from django.shortcuts import render, HttpResponse, redirect, reverse, get_object_or_404
+from django.contrib.auth.decorators import login_required, permission_required
 from .models import Book, Author
 from .forms import BookForm, AuthorForm
 
@@ -14,7 +15,7 @@ def authors(request):
     authors = Author.objects.all()
     return render(request, 'books/authors.template.html', {'authors': authors})
 
-
+@login_required
 def create_book(request):
     if request.method == 'POST':
         create_form = BookForm(request.POST)
